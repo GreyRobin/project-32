@@ -4,21 +4,23 @@ var button
 function setup() {
   createCanvas(800,400);
   createSprite(400, 200, 50, 50);
-  ball = new Ball(500,200,50,50)
-  blower = new Blower(300,300,100,50)
-  blowermouth = new Blowermouth(400,250,50,50)
-  button = createButton("click to blow")
-  button.position(width/2,height-100)
-  button.class("blowbutton")
-  button.mousePressed(blow)
+  ball = new Ball(width / 2 + 80, height / 2 - 80, 80, 80);
+  blower = new Blower(width / 2 - 50, height / 2 + 50, 150, 20);
+  blowermouth = new Blowermouth(width / 2 + 70, height / 2 + 20, 100, 90);
+  button = createButton("Click to Blow");
+  button.position(width / 2, height - 100);
+  button.class("blowButton");
+  button.mousePressed(blow);
 }
 
 function draw() {
-  background(255,255,255);  
-  drawSprites();
+  background(255,255,255); 
+  Engine.update(engine);
+ 
   ball.show()
   blower.show()
   blowermouth.show()
+  
 }
 function blow(){
   Matter.Body.applyForce(ball.body,{x:0,y:0},{x:0,y:0.05})
